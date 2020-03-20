@@ -1,0 +1,28 @@
+﻿@page "{productId:int?}"
+@model ZooSite.Pages.Products.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Editing @Model.Product.Name</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Product.Id" />
+    <div class="form-group">
+        <label asp-for="Product.Name"></label>
+        <input asp-for="Product.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Product.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Price"></label>
+        <input asp-for="Product.Price" class="form-control" />
+        <span class="text-danger" asp-validation-for="Product.Price"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.Type"></label>
+        <select asp-for="Product.Type" asp-items="Model.Types" class="form-control"></select>
+        <span class="text-danger" asp-validation-for="Product.Type"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
