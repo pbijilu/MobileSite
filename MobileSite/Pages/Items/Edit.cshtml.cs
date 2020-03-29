@@ -8,34 +8,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MobileSite.Core;
 using MobileSite.Data;
 
-namespace ZooSite.Pages.Products
+namespace MobileSite.Pages.Items
 {
     public class EditModel : PageModel
     {
-        private readonly IProductData productData;
+        private readonly IItemData itemData;
         private readonly IHtmlHelper htmlHelper;
 
         [BindProperty]
-        public Product Product { get; set; }
+        public Item Item { get; set; }
         public IEnumerable<SelectListItem> Types { get; set; }
 
-        public EditModel(IProductData productData, IHtmlHelper htmlHelper)
+        public EditModel(IItemData itemData, IHtmlHelper htmlHelper)
         {
-            this.productData = productData;
+            this.itemData = itemData;
             this.htmlHelper = htmlHelper;
         }
-        public IActionResult OnGet(int? productId)
+        public IActionResult OnGet(int? itemId)
         {
-            Types = htmlHelper.GetEnumSelectList<ProductType>();
-            if(productId.HasValue)
+            Types = htmlHelper.GetEnumSelectList<ItemType>();
+            if(itemId.HasValue)
             {
-                Product = productData.GetById(productId.Value);
+                Item = itemData.GetById(itemId.Value);
             }
             else
             {
-                Product = new Product();
+                Item = new Item();
             }
-            if (Product == null)
+            if (Item == null)
             {
                 return RedirectToPage("./NotFound");
             }
@@ -46,21 +46,21 @@ namespace ZooSite.Pages.Products
         {
             if(!ModelState.IsValid)
             {
-                Types = htmlHelper.GetEnumSelectList<ProductType>();
+                Types = htmlHelper.GetEnumSelectList<ItemType>();
                 return Page();
             }
 
-            if(Product.Id > 0)
+            if(Item.Id > 0)
             {
-                productData.Update(Product);
+                itemData.Update(Item);
             }
             else
             {
-                productData.Add(Product);
+                itemData.Add(Item);
             }
-            productData.Commit();
-            TempData["Message"] = "Restaurant saved!";
-            return RedirectToPage("./Detail", new { productId = Product.Id });
+            itemData.Commit();
+            TempData["Message"] = "Item saved!";
+            return RedirectToPage("./Detail", new { itemId = Item.Id });
         }
     }
 }

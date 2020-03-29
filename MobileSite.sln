@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSite", "MobileSite\MobileSite.csproj", "{01AF1B3C-F038-4E82-A606-FD35A069361B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSite", "MobileSite\MobileSite.csproj", "{01AF1B3C-F038-4E82-A606-FD35A069361B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSite.Core", "MobileSite.Core\MobileSite.Core.csproj", "{26FFBD5C-C5A2-4345-A3D7-D9031E576E22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSite.Core", "MobileSite.Core\MobileSite.Core.csproj", "{26FFBD5C-C5A2-4345-A3D7-D9031E576E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSite.Data", "MobileSite.Data\MobileSite.Data.csproj", "{AA6255C8-B220-4572-A832-B861CE10087E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileSite.Data", "MobileSite.Data\MobileSite.Data.csproj", "{AA6255C8-B220-4572-A832-B861CE10087E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

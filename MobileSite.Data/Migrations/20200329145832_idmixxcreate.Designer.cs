@@ -2,38 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MobileSite.Data;
 
 namespace MobileSite.Data.Migrations
 {
     [DbContext(typeof(MobileSiteDbContext))]
-    partial class MobileSiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200329145832_idmixxcreate")]
+    partial class idmixxcreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("MobileSite.Core.Good", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GoodId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("Price");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Goods");
-                });
 
             modelBuilder.Entity("MobileSite.Core.Item", b =>
                 {

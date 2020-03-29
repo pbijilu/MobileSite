@@ -1,0 +1,24 @@
+﻿@page "{itemId:int}"
+
+@model MobileSite.Pages.Items.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>@Model.Item.Name</h2>
+<div>
+    Id: @Model.Item.Id
+</div>
+<div>
+    Price: @Model.Item.Price
+</div>
+<div>
+    Type: @Model.Item.Type
+</div>
+
+@if(Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<a asp-page="./List" class="btn btn-default">All Items</a>

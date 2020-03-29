@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MobileSite.Data;
 
 namespace MobileSite.Data.Migrations
 {
     [DbContext(typeof(MobileSiteDbContext))]
-    partial class MobileSiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200329152736_createGoodTable")]
+    partial class createGoodTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,8 +25,6 @@ namespace MobileSite.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GoodId");
 
                     b.Property<string>("Name");
 

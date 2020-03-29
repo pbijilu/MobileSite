@@ -1,6 +1,6 @@
 ﻿namespace MobileSite.Core
 {
-    public enum ProductType
+    public enum ItemType
     {
         Default,
         Phone,

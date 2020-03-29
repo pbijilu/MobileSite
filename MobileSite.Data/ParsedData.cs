@@ -2,29 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using MobileSite.Core;
 
 namespace MobileSite.Data
 {
-    public interface IProductData
-    {
-        IEnumerable<Product> GetProductsByName(string name);
-        Product GetById(int id);
-        Product Update(Product updatedProduct);
-        Product Add(Product newProduct);
-        Product Delete(int id);
-        int Commit();
-    }
-
-    public class ParsedData : IProductData
+    public class ParsedData : IItemData
     {
         string result = string.Empty;
-        List<Product> products;
+        List<Item> products;
 
         public ParsedData()
         {
-            products = new List<Product>();
+            products = new List<Item>();
 
             string htmlCode = string.Empty;
             using (WebClient client = new WebClient())
@@ -49,17 +38,17 @@ namespace MobileSite.Data
                     priceString = priceString.Replace(" ", "");
                     int price = Int32.Parse(priceString);
                     int id = Int32.Parse(idString);
-                    products.Add(new Product() { Name = name, Id = id, Price = price, PriceMi92 = 9000 });
+                    products.Add(new Item() { Name = name, Id = id, Price = price });
                 }
             }
         }
 
-        public Product GetById(int id)
+        public Item GetById(int id)
         {
-            return products.SingleOrDefault(a => a.Id == id);
+            return products.SingleOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Product> GetProductsByName(string name)
+        public IEnumerable<Item> GetItemsByName(string name)
         {
             return from p in products
                    where string.IsNullOrEmpty(name) || p.Name.Contains(name)
@@ -67,14 +56,14 @@ namespace MobileSite.Data
                    select p;
         }
 
-        public Product Add(Product newProduct)
+        public Item Add(Item newProduct)
         {
             products.Add(newProduct);
-            newProduct.Id = products.Max(r => r.Id) + 1;
+            newProduct.Id = products.Max(p => p.Id) + 1;
             return newProduct;
         }
 
-        public Product Update(Product updatedProduct)
+        public Item Update(Item updatedProduct)
         {
             var product = products.SingleOrDefault(p => p.Id == updatedProduct.Id);
             if(product != null)
@@ -89,6 +78,22 @@ namespace MobileSite.Data
         public int Commit()
         {
             return 0;
+        }
+
+        public Item Delete(int id)
+        {
+            var product = products.FirstOrDefault(p => p.Id == id);
+            if (product != null)
+            {
+                products.Remove(product);
+            }
+            return product;
+
+        }
+
+        public IEnumerable<Item> GetItems()
+        {
+            throw new NotImplementedException();
         }
     }
 

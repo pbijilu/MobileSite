@@ -3,31 +3,29 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MobileSite.Data.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class createGoodTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Goods",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 80, nullable: false),
-                    Price = table.Column<int>(nullable: false),
-                    PriceMi92 = table.Column<int>(nullable: false),
-                    Type = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Goods", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Goods");
         }
     }
 }

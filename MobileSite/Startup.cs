@@ -28,10 +28,12 @@ namespace MobileSite
         {
             services.AddDbContextPool<MobileSiteDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ZoositeDb"));
+                options.UseSqlServer(Configuration.GetConnectionString("MobileSiteDb"));
             });
 
-            services.AddSingleton<IProductData, ParsedData>();
+            services.AddScoped<IItemData, SqlItemData>();
+
+            services.AddScoped<IParsing, Parsing>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

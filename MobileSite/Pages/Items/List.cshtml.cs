@@ -8,31 +8,29 @@ using Microsoft.Extensions.Configuration;
 using MobileSite.Core;
 using MobileSite.Data;
 
-namespace ZooSite.Pages.Products
+namespace MobileSite.Pages.Items
 {
     public class ListModel : PageModel
     {
         private readonly IConfiguration config;
-        private readonly IProductData ProductData;
+        private readonly IItemData itemData;
 
         public string Message { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Item> Items { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
-        public ListModel(IConfiguration config, IProductData ProductData)
+        public ListModel(IConfiguration config, IItemData itemData)
         {
             this.config = config;
-            this.ProductData = ProductData;
+            this.itemData = itemData;
         }
 
         public void OnGet()
         {
-            
-
             Message = config["Message"];
-            Products = ProductData.GetProductsByName(SearchTerm);
+            Items = itemData.GetItemsByName(SearchTerm);
         }
     }
 }

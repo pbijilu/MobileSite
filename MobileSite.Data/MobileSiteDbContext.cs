@@ -13,6 +13,8 @@ namespace MobileSite.Data
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Item> Items { get; set; }
+
+        public DbSet<Good> Goods { get; set; }
     }
 }

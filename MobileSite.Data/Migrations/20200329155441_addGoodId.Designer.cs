@@ -9,8 +9,8 @@ using MobileSite.Data;
 namespace MobileSite.Data.Migrations
 {
     [DbContext(typeof(MobileSiteDbContext))]
-    [Migration("20200226135809_initialcreate")]
-    partial class initialcreate
+    [Migration("20200329155441_addGoodId")]
+    partial class addGoodId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,11 +20,32 @@ namespace MobileSite.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ZooSite.Core.Product", b =>
+            modelBuilder.Entity("MobileSite.Core.Good", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("GoodId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Goods");
+                });
+
+            modelBuilder.Entity("MobileSite.Core.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdMi92");
+
+                    b.Property<int>("IdMixx");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -38,7 +59,7 @@ namespace MobileSite.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Items");
                 });
 #pragma warning restore 612, 618
         }

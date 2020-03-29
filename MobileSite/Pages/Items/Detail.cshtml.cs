@@ -7,26 +7,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MobileSite.Core;
 using MobileSite.Data;
 
-namespace ZooSite.Pages.Products
+namespace MobileSite.Pages.Items
 {
     public class DetailModel : PageModel
     {
-        private readonly IProductData productData;
+        private readonly IItemData itemData;
 
         [TempData]
         public string Message { get; set; }
 
-        public Product Product { get; set; }
+        public Item Item { get; set; }
 
-        public DetailModel(IProductData productData)
+        public DetailModel(IItemData itemData)
         {
-            this.productData = productData;
+            this.itemData = itemData;
         }
 
-        public IActionResult OnGet(int productId)
+        public IActionResult OnGet(int itemId)
         {
-            Product = productData.GetById(productId);
-            if(Product == null)
+            Item = itemData.GetById(itemId);
+            if(Item == null)
             {
                 return RedirectToPage("./NotFound");
             }
