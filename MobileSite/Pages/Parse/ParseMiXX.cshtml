@@ -1,0 +1,14 @@
+﻿@page
+@model ParseMiXXModel
+@{
+}
+
+<h1>Parsing Mi-xx</h1>
+
+<div>@Model.Goods.Count() goods parsed</div>
+
+
+<form method="post">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="../Items/List" class="btn btn-default">Cancel</a>
+</form>

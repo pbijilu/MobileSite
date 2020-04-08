@@ -1,23 +1,10 @@
 ﻿@page
-@model ParseModel
 @{
+    ViewData["Title"] = "Parse";
 }
 
-<h1>Parsing Mi-xx</h1>
+<h2>Parse</h2>
 
-<div>@Model.Goods.Count() goods parsed</div>
-<table class="table">
-    @foreach (var good in Model.Goods)
-    {
-    <tr>
-        <td>@good.GoodId</td>
-        <td>@good.Name</td>
-        <td>@good.Price</td>
-    </tr>
-    }
-</table>
+<a asp-page="./ParseMiXX" class="btn btn-default">Parse Mi-xx</a>
+<a asp-page="./ParseMi92" class="btn btn-default">Parse Mi92</a>
 
-<form method="post">
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-page="../Items/List" class="btn btn-default">Cancel</a>
-</form>

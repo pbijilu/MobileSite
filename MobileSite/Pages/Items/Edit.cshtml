@@ -8,6 +8,7 @@
 
 <form method="post">
     <input type="hidden" asp-for="Item.Id" />
+    <input type="hidden" asp-for="Item.IdMixx" />
     <div class="form-group">
         <label asp-for="Item.Name"></label>
         <input asp-for="Item.Name" class="form-control" />
@@ -17,6 +18,11 @@
         <label asp-for="Item.Price"></label>
         <input asp-for="Item.Price" class="form-control" />
         <span class="text-danger" asp-validation-for="Item.Price"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Item.IdMi92"></label>
+        <input asp-for="Item.IdMi92" class="form-control" />
+        <span class="text-danger" asp-validation-for="Item.IdMi92"></span>
     </div>
     <div class="form-group">
         <label asp-for="Item.Type"></label>

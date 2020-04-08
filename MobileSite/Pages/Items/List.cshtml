@@ -5,25 +5,63 @@
 
 <h1>Items</h1>
 
-<form method="get">
-    <div class="form-group">
-        <div class="input-group">
-            <input type="search" class="form-control" asp-for="SearchTerm" />
-            <span class="input-group-btn">
-                <button class="btn btn-default">
-                    <i class="glyphicon glyphicon-search">
 
-                    </i>
-                </button>
-            </span>
-        </div>
-    </div>
-</form>
 
-@foreach (var item in Model.Items)
- { 
-    <partial name="_Summary" model="item" />
- }
+<table class="table">
+    <tr>
+        <td></td>
+        <td>
+            <form method="get">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="search" class="form-control" asp-for="SearchTerm" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default">
+                                <i class="glyphicon glyphicon-search">
+                                </i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Id
+        </td>
+        <td>
+            Name
+        </td>
+        <td>
+            Price
+        </td>
+        <td>
+            PriceMi92
+        </td>
+
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.IdMixx</td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.PriceMi92</td>
+            <td>
+                <a class="btn btn-lg" asp-page="./Detail" asp-route-itemId="@item.Id">
+                    <i class="glyphicon glyphicon-zoom-in"></i>
+                </a>
+                <a class="btn btn-lg" asp-page="./Edit" asp-route-itemId="@item.Id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-lg" asp-page="./Delete" asp-route-itemId="@item.Id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
 
 <a asp-page=".\Edit" class="btn btn-primary">Add New</a>
 

@@ -9,7 +9,7 @@ namespace MobileSite.Data
 {
     public interface IParsing
     {
-        IEnumerable<Good> Parse();
+        IEnumerable<Good> Parse(string url);
 
         Good Add(Good newGood);
 

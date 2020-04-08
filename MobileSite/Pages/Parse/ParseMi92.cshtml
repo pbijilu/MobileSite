@@ -1,0 +1,27 @@
+﻿@page
+@model MobileSite.Pages.Parse.ParseMi92Model
+@{
+    ViewData["Title"] = "ParseMi92";
+}
+
+<h2>ParseMi92</h2>
+
+<div>@Model.Goods.Count() goods parsed </div>
+<div>@(Model.Goods.Count() - Model.ExistingGoodsCount) new goods parsed </div>
+
+<table class="table">
+    @foreach (var good in Model.NewGoods)
+    {
+    <tr>
+        <td>@good.GoodId</td>
+        <td>@good.Name</td>
+        <td>@good.Price</td>
+    </tr>
+    }
+</table>
+
+<form method="post">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="../Items/List" class="btn btn-default">Cancel</a>
+</form>
+

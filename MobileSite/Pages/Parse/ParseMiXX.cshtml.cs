@@ -9,43 +9,43 @@ using MobileSite.Data;
 
 namespace MobileSite.Pages.Parse
 {
-    public class ParseModel : PageModel
+    public class ParseMiXXModel : PageModel
     {
         private readonly IItemData itemData;
         private readonly IParsing parsing;
 
         public IEnumerable<Good> Goods { get; set; }
 
-        public ParseModel(IItemData itemData, IParsing parsing)
+        public ParseMiXXModel(IItemData itemData, IParsing parsing)
         {
             this.itemData = itemData;
             this.parsing = parsing;
         }
         public void OnGet()
         {
-            Goods = parsing.Parse();
+            parsing.DeleteAll();
 
-            foreach (var g in Goods)
+            Goods = parsing.Parse("https://www.mi-xx.ru/smartfony?page=0");
+
+            foreach (var good in Goods)
             { 
-                parsing.Add(g);
+                parsing.Add(good);
             }
             parsing.Commit();
         }
 
         public IActionResult OnPost()
         {
-            Goods = parsing.GetGoods();
-
-            foreach (var g in Goods)
+           foreach (var good in parsing.GetGoods())
             {
-                if (itemData.GetItems().Where(i => i.IdMixx == g.GoodId).Any())
+                if (itemData.GetItems().Where(i => i.IdMixx == good.GoodId).Any())
                 {
-                    Item item = itemData.GetItems().Where(i => i.IdMixx == g.GoodId).Single();
-                    item.Price = g.Price;
+                    Item item = itemData.GetItems().Where(i => i.IdMixx == good.GoodId).Single();
+                    item.Price = good.Price;
                     itemData.Update(item);
                 }
                 else    
-                    itemData.Add(new Item() {IdMixx = g.GoodId, Name = g.Name, Price = g.Price });
+                    itemData.Add(new Item() {IdMixx = good.GoodId, Name = good.Name, Price = good.Price });
             }
 
             itemData.Commit();
